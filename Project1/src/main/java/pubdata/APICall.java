@@ -49,17 +49,6 @@ public class APICall {
     	conn.setRequestProperty("Content-type", "appplication/json");
 
     	
-    	// # 데이터 성공적으로 받아왔는지 확인
-    	// * 콘솔창 Response code가
-    	// 200대이면 데이터를 성공적으로 받아왔다는 뜻
-    	// 300대이면 추가적인 작업이 필요하다는 뜻
-    	// 400대이면 클라이언트 쪽에서 잘못되어서 요청 처리 불가
-    	// 500대이면 서버 쪽에서 문제가 있어서 요청 처리 불가
-    	// https://www.whatap.io/ko/blog/40/
-    	
-    	// * Response code 출력
-//    	System.out.println("Response code : " + conn.getResponseCode());
-    	
     	// * 받아온 데이터를 String으로 조합
     	BufferedReader rd;
     	if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
@@ -74,7 +63,6 @@ public class APICall {
     	}
     	rd.close();
     	conn.disconnect();
-//    	System.out.println(sb.toString());
     	
     	
     	// # 받아온 데이터를 json 확장자로 변환
@@ -83,7 +71,6 @@ public class APICall {
     	try {
     		result = (JSONObject) new JSONParser().parse(sb.toString());
     		allResult.add(result);
-//    		System.out.println("allResult 입력완료" + allResult.size());
     	} catch(ParseException e){
     		e.printStackTrace();
     	}
@@ -97,13 +84,6 @@ public class APICall {
     		wifiNum = Integer.parseInt(longToStr);
     	}
     
-    	// * json 파일 저장
-//    	JSONObject TbPublicWifiInfo = (JSONObject) result.get("TbPublicWifiInfo");
-//         	if(TbPublicWifiInfo != null) {
-//        	FileWriter file = new FileWriter("C:\\Users\\PC\\Desktop\\Backend\\_88_1_Mission1\\ShowMeTheWIFI\\result" + startIndex + ".json");
-//        	file.write(result.toJSONString());
-//        	file.close();
-//    	}
 	}
 	
 }
