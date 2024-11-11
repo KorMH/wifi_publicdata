@@ -8,36 +8,22 @@ import java.util.*;
 
 public class DatabaseControl {
 	
-	/**# distMap : key값은 와이파이의 일련번호, 
-	 * value값은 해당 와이파이와 검색한 위치 사이의 거리(km)를 담은 해시테이블. 
-	 * 매서드 dbSelect에서 선별된 와이파이들을 저장한다. 
-	 * (key : manageCode, value : dist)
-	 * */
+	
 	public HashMap<String, Double> distMap = new HashMap<>();
 	
 	
-	/**# results : 현 위치와 가장 가까운 와이파이 20개를 담은 2차원 리스트. 
-	 * 매서드 dbSelectTop20에서 선별된 와이파이를 저장하며, 
-	 * 서비스 이용자에게 가장 중요하게 보여질 정보들이 담겨있다. 
-	 * */
+	
 	public ArrayList<LinkedList<String>> results = new ArrayList<>();
 	
 
-	/**# history : 어떤 위치에서 검색을 했는지에 대한 이력을 담은 2차원 리스트.
-	 * 매서드 dbSelectLog에서 select한 결과를 저장한다.
-	 * */
 	public ArrayList<LinkedList<String>> history = new ArrayList<>();
 	
-	/**# isNumCorrect : 테이블 WIFILIST에 현재 저장된 데이터의 개수와 
-	 * API로부터 호출된 데이터의 개수가 일치하는지 여부를 boolean 자료형으로 나타낸 변수. 
-	 * 매서드 dbNumCheck의 리턴값을 담고있다. 
-	 * */
 	public static boolean isNumCorrect = false;
 	
 	
 	public DatabaseControl(){}
 	
-	// ================================================================== // 
+	
 	
 	
 	/** dbNumCheck : 현재 테이블 WIFILIST의 데이터 개수가 정상적인지 확인하는 메서드. 
@@ -88,7 +74,7 @@ public class DatabaseControl {
         }
 	}
 	
-	// ================================================================== // 
+
 	
 	
 	//  [ 데이터 입력 (테이블 WIFI LIST) ]
@@ -206,8 +192,6 @@ public class DatabaseControl {
         }
 	}
 	
-	// ================================================================== // 
-	
 	
 	//  [ 데이터 입력 (테이블 SearchLog) ]
 	//  어느 위치에서 검색을 했는지 로그를 남김
@@ -269,10 +253,6 @@ public class DatabaseControl {
 	// ================================================================== // 
 	
 	
-	//  [ 데이터 선별 (테이블 WIFI LIST) ]
-	//  - 입력받은 위도 경도 값(테이블 SearchLog에 저장되어있는 Xpos, Ypos)을 기준으로
-	//  반경 1km안에 있는 와이파이들을 선별
-	//  - DB의 모든 데이터의 거리를 구하지 않음으로써 속도 향상
 	
 	public void dbSelect(double lat, double lnt) {
 		
